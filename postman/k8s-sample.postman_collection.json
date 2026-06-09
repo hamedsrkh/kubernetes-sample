@@ -1,0 +1,121 @@
+{
+  "info": {
+    "_postman_id": "082c3f6a-9bdc-4f98-8a89-68095e160a07",
+    "name": "K8s Sample Articles API",
+    "description": "Postman collection for the local NestJS articles API. Run the requests from top to bottom: create stores articleId for detail, update, and delete requests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Articles",
+      "item": [
+        {
+          "name": "List Articles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/articles",
+              "host": ["{{baseUrl}}"],
+              "path": ["articles"]
+            }
+          }
+        },
+        {
+          "name": "Create Article",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('created', function () {",
+                  "  pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "const article = pm.response.json();",
+                  "pm.environment.set('articleId', article.id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Learning Kubernetes with a real app\",\n  \"text\": \"This article was created from Postman so we can test the NestJS API, MySQL persistence, and the frontend integration before dockerizing the application services.\",\n  \"author\": \"Local Developer\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/articles",
+              "host": ["{{baseUrl}}"],
+              "path": ["articles"]
+            }
+          }
+        },
+        {
+          "name": "Get Article By Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/articles/{{articleId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["articles", "{{articleId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Article",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Learning Kubernetes with a local MySQL database\",\n  \"text\": \"This updated article confirms that PATCH requests work and that the API is persisting changes in MySQL through TypeORM.\",\n  \"author\": \"Local Developer\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/articles/{{articleId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["articles", "{{articleId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Article",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/articles/{{articleId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["articles", "{{articleId}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
