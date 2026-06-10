@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleForm } from "@/components/article-form";
-import { getArticle } from "@/lib/articles";
+import { getArticle } from "@/data/articles";
 
 type EditArticlePageProps = {
   params: Promise<{

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Article, getArticles } from "@/lib/articles";
+import { getArticles } from "@/data/articles";
+import { Article } from "@/types/article";
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("en", {

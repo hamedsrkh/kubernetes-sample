@@ -1,4 +1,4 @@
-FROM node:22-bookworm-slim AS deps
+fFROM node:22-bookworm-slim AS deps
 
 WORKDIR /app
 

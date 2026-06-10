@@ -3,12 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
-import {
-  Article,
-  ArticlePayload,
-  createArticle,
-  updateArticle,
-} from "@/lib/articles";
+import { createArticle, updateArticle } from "@/data/articles";
+import { Article, ArticlePayload } from "@/types/article";
 
 type ArticleFormProps = {
   article?: Article;
