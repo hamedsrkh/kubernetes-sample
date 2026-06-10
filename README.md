@@ -63,8 +63,8 @@ Useful endpoints:
 
 Import these two files into Postman:
 
-- `postman/k8s-sample.postman_collection.json`
-- `postman/k8s-sample.postman_environment.json`
+- `config/postman/k8s-sample.postman_collection.json`
+- `config/postman/k8s-sample.postman_environment.json`
 
 Select the `K8s Sample Local` environment, start the API, then run the collection from top to bottom. The create request stores `articleId` for the detail, update, and delete requests.
 
