@@ -80,7 +80,7 @@ Open `http://localhost:3000`.
 
 ## Run Everything With Docker Compose
 
-Build and start the full stack:
+Build and start the full stack behind Nginx:
 
 ```bash
 docker compose up --build
@@ -93,7 +93,15 @@ docker compose up --build -d
 docker compose ps
 ```
 
-Open the web app at `http://localhost:3000`. The API is available at `http://localhost:3001/api`.
+Open the web app at `http://localhost`. The API is available through Nginx at `http://localhost/api`.
+
+If port `80` is already in use on your machine, run Nginx on another host port:
+
+```bash
+NGINX_HTTP_PORT=8080 docker compose up --build -d
+```
+
+Then open `http://localhost:8080`.
 
 Stop the stack:
 
