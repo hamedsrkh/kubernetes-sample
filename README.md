@@ -128,11 +128,15 @@ npm run lint
 npm run build
 ```
 
-## Next Kubernetes Step
+## Kubernetes
 
-The app already has pieces that map cleanly to Kubernetes concepts:
+Kubernetes manifests live in `config/k8s`.
 
-- API health endpoint for readiness/liveness probes
-- Environment-based configuration for ConfigMaps and Secrets
-- Separate frontend, backend, and database boundaries
-- MySQL dependency ready to become a StatefulSet or managed database
+```bash
+docker build -t k8s-sample-api:k8s ./api
+docker build -t k8s-sample-web:k8s --build-arg NEXT_PUBLIC_API_URL=/api ./web
+kubectl apply -k config/k8s
+kubectl -n k8s-sample get all
+```
+
+See `config/k8s/README.md` for local image notes, Ingress access, port-forwarding, and cleanup commands.
